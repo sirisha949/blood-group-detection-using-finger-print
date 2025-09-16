@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Fingerprint</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 20px 40px;
+      background-color: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      font-size: 24px;
+      color: #2da8a4;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container h2 {
+      margin-bottom: 20px;
+      font-size: 28px;
+      text-align: center;
+    }
+
+    form {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    input[type="file"] {
+      margin: 15px 0;
+      padding: 10px;
+      border-radius: 6px;
+      background-color: #fff;
+      color: #000;
+      width: 100%;
+    }
+
+    button {
+      background-color: #2da8a4;
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #238a89;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #ccc;
+      margin-top: 10px;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .container h2 {
+        font-size: 22px;
+      }
+
+      form {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>Upload Fingerprint</header>
+
+  <div class="container">
+    <h2>Submit Your Fingerprint Image</h2>
+    <form id="uploadForm">
+      <input type="file" name="file" accept="image/*" required />
+      <br/>
+      <button type="submit">Predict</button>
+      <p class="note">Please upload a clear fingerprint image.</p>
+      <p id="result"></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const fileInput = document.querySelector('input[name="file"]');
+      const resultEl = document.getElementById('result');
+
+      if (!fileInput.files[0]) {
+        resultEl.textContent = "Please select a file.";
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+
+      try {
+        resultEl.textContent = "Predicting...";
+
+        const response = await fetch('/predict', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(errorText);
+        }
+
+        const data = await response.json();
+
+        if (data.error) {
+          resultEl.textContent = "Error: " + data.error;
+        } else {
+          resultEl.textContent = `Prediction: ${data.prediction} | Confidence: ${data.confidence}`;
+        }
+      } catch (error) {
+        console.error("Prediction error:", error);
+        resultEl.textContent = "Prediction failed: " + error.message;
+      }
+    });
+  </script>
+
+</body>
+</html>

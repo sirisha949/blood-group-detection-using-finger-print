@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fingerprint Blood Group Detection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px 50px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: #2da8a4;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 500;
+      padding: 10px 18px;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #2da8a4;
+      border-color: #2da8a4;
+    }
+
+    .hero {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    .upload-btn {
+      padding: 12px 28px;
+      font-size: 16px;
+      background-color: #2da8a4;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .upload-btn:hover {
+      background-color: #228987;
+    }
+
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #2da8a4;
+    }
+
+    .section p {
+      font-size: 16px;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+      color: #ccc;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+      }
+
+      nav a {
+        margin-left: 0;
+      }
+
+      .hero h2 {
+        font-size: 28px;
+      }
+
+      .section h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Blood Group Detection</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#welcome">Welcome</a>
+      <a href="#about">About</a>
+      <a href="/signin">Login</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Fingerprint-Based Blood Group Detection</h2>
+    <p>
+      A modern and non-invasive solution to determine your blood group instantly using fingerprint biometrics.
+      Designed for hospitals, emergency responders, and donation drives.
+    </p>
+    <a href="/upload" class="upload-btn">Upload Fingerprint</a>
+
+  </section>
+
+  <section class="section" id="welcome">
+    <h2>Welcome</h2>
+    <p>
+      Welcome to our innovative platform where healthcare meets cutting-edge biometric technology.
+      Our system uses fingerprint data to predict and identify blood groups, offering a swift and
+      reliable alternative to traditional blood testing. Whether you're a healthcare professional or
+      a patient, this tool is built to serve in critical times with accuracy and ease.
+    </p>
+  </section>
+
+  <section class="section" id="about">
+    <h2>About the System</h2>
+    <p>
+      This system utilizes biometric fingerprint recognition to determine an individual’s blood group.
+      Fingerprints are unique and unchangeable, and recent studies suggest that certain fingerprint patterns
+      can be linked to genetic information like blood types. By analyzing these patterns through machine learning
+      algorithms, the system can accurately detect blood group.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Fingerprint Blood Group Detection. All rights reserved.
+  </footer>
+
+</body>
+</html>
